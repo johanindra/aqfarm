@@ -1,189 +1,118 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class NotifikasiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Simulasi data waktu sekarang
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('hh:mm a, dd MMMM yyyy').format(now);
+
+    // Simulasi tipe notifikasi
+    List<String> tipeNotifikasi = [
+      'pengurasan',
+      'pengisian',
+      'pakan',
+      'pengurasan',
+      'pakan',
+      'pengurasan',
+      'pengisian',
+      'pakan',
+      'pengurasan',
+      'pakan'
+    ];
+
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF62CDFA), Colors.white],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+      appBar: AppBar(
+        title: Text(
+          "Notifikasi",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        padding: EdgeInsets.all(16.0),
+        // backgroundColor: Colors.white,
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader(),
-            SizedBox(height: 20),
-            _buildAmoniaLevel(),
-            SizedBox(height: 20),
-            _buildWaterTemperature(),
-            SizedBox(height: 20),
-            _buildDateSection(),
-            SizedBox(height: 20),
-            _buildFeedingSchedule(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Good Morning,',
-          style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        Text(
-          'Aashifa Sheikh',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildAmoniaLevel() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Kadar Amonia',
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        Row(
-          children: [
+            Text(
+              "Notifikasi Terbaru",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 16),
             Expanded(
-              child: LinearProgressIndicator(
-                value: 0.67,
-                backgroundColor: Colors.grey[300],
-                color: Colors.blue,
+              child: ListView.builder(
+                itemCount: tipeNotifikasi.length,
+                itemBuilder: (context, index) {
+                  // Tentukan icon berdasarkan tipe notifikasi
+                  String iconPath;
+                  String detailText;
+
+                  if (tipeNotifikasi[index] == 'pengurasan') {
+                    iconPath = 'assets/ic-pengurasan.png';
+                    detailText =
+                        "Pengurasan air kolam sedang berlangsung karena kadar amonia telah mencapai batas 0,05 ppm. Proses ini akan selesai dalam beberapa saat.";
+                  } else if (tipeNotifikasi[index] == 'pengisian') {
+                    iconPath = 'assets/ic-pengisian.png';
+                    detailText =
+                        "Pengisian air kolam telah dimulai untuk menjaga kualitas air. Mohon pastikan semua sistem berjalan dengan baik selama proses ini.";
+                  } else if (tipeNotifikasi[index] == 'pakan') {
+                    iconPath = 'assets/ic-pakan.png';
+                    detailText =
+                        "Waktu pemberian pakan otomatis telah tiba. Pakan sedang disalurkan sesuai jadwal yang telah diatur.";
+                  } else {
+                    iconPath =
+                        'assets/default.png'; // Default jika tipe tidak cocok
+                    detailText = "Detail notifikasi tidak tersedia.";
+                  }
+
+                  return Card(
+                    elevation: 2,
+                    margin: EdgeInsets.symmetric(vertical: 8),
+                    child: ListTile(
+                      leading: Image.asset(
+                        iconPath, // Menampilkan icon berdasarkan tipe
+                        width: 40,
+                        height: 40,
+                      ),
+                      // title: Text(
+                      //     "Notifikasi ${index + 1} - ${tipeNotifikasi[index]}"),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            detailText,
+                            style: TextStyle(
+                              fontSize: 12, // Ukuran teks lebih kecil
+                              color: Colors.black, // Warna teks
+                            ),
+                          ),
+                          SizedBox(height: 4),
+                          Text(
+                            formattedDate,
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      trailing: Icon(Icons.more_vert), // icon titik 3
+                      // trailing: Icon(Icons.arrow_forward_ios), // icon panah
+                      onTap: () {
+                        // Aksi ketika notifikasi diklik
+                      },
+                    ),
+                  );
+                },
               ),
             ),
-            SizedBox(width: 10),
-            Text('67%', style: TextStyle(fontSize: 16)),
           ],
         ),
-        SizedBox(height: 5),
-        Text(
-          'Kadar Amonia saat ini: 0.01 ppm',
-          style: TextStyle(color: Colors.grey),
-        ),
-        Text(
-          'Pengurasan kolam akan dilakukan secara otomatis ketika kadar amonia mencapai 0.05 ppm',
-          style: TextStyle(color: Colors.grey),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildWaterTemperature() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Suhu Air',
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        Row(
-          children: [
-            Icon(Icons.water, size: 30, color: Colors.blue),
-            SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('11:00 AM', style: TextStyle(fontSize: 16)),
-                Text('Suhu Air 30°C', style: TextStyle(fontSize: 16)),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildDateSection() {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      decoration: BoxDecoration(
-        color: Color(0xFF62CDFA),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Column(
-        children: [
-          Text(
-            'Hari & Tanggal',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
-          SizedBox(height: 5),
-          Text(
-            '16 Juni 2023',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFeedingSchedule() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Berat Pakan yang Diberikan (kg)',
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
-        ),
-        SizedBox(height: 10),
-        _buildFeedingRow('Pagi', '06:41 AM', 125),
-        _buildFeedingRow('Sore', '14:41 PM', 57),
-        _buildFeedingRow('Malam', '22:41 PM', 0),
-      ],
-    );
-  }
-
-  Widget _buildFeedingRow(String time, String label, double weight) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-        boxShadow: [
-          BoxShadow(color: Colors.grey, blurRadius: 4, spreadRadius: 2),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(time, style: TextStyle(fontSize: 16)),
-              Text(label, style: TextStyle(fontSize: 16)),
-            ],
-          ),
-          Column(
-            children: [
-              Text(weight.toString(), style: TextStyle(fontSize: 16)),
-              Slider(
-                value: weight,
-                min: 0,
-                max: 200,
-                onChanged: (value) {},
-                activeColor: Colors.blue,
-                inactiveColor: Colors.grey[300],
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }
