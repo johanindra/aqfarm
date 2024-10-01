@@ -14,6 +14,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   intl: ^0.17.0
   fl_chart: ^0.50.1
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -38,3 +39,7 @@ flutter:
     - assets/ic-pakan.png
     - assets/ic-pengurasan.png
     - assets/ic-pengisian.png
+    - assets/ic-monitor1.png
+    - assets/ic-monitor2.png
+    - assets/ic-monitor3.png
+    - assets/defaut-profil.png

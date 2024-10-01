@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'grafik/kadar_amonia.dart';
 import 'package:intl/intl.dart';
+import 'custom/icon_notifikasi.dart';
 
 class HomeScreen extends StatefulWidget {
   final Function(int) onTapNotification;
@@ -45,27 +46,43 @@ class _HomeScreenState extends State<HomeScreen> {
         '%'; // Menghitung persen
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text(
-      //     getGreeting(),
-      //     style: TextStyle(
-      //       fontSize: 14,
-      //       fontWeight: FontWeight.w500,
-      //       color: Colors.white,
-      //     ),
-      //   ),
-      //   backgroundColor: Color(0xFF62CDFA),
-      //   // Text(
-      //   //   "Nama Pengguna",
-      //   //   style: TextStyle(
-      //   //     fontSize: 20,
-      //   //     fontWeight: FontWeight.w600,
-      //   //     color: Colors.black,
-      //   //   ),
-      //   // ),
-      //   // backgroundColor: Colors.white,
-      //   // centerTitle: true,
-      // ),
+      appBar: AppBar(
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              getGreeting(),
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              "Nama Pengguna",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Color(0xFF62CDFA),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+                right: 20), // Menambahkan jarak 10 dari kanan
+            child: GestureDetector(
+              onTap: () {
+                widget.onTapNotification(2); // Ganti ke indeks notifikasi
+              },
+              child:
+                  CustomNotificationIcon(), // Menggunakan CustomNotificationIcon
+            ),
+          ),
+        ],
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -80,48 +97,48 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 children: [
                   // Header
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, top: 44, right: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              getGreeting(),
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white,
-                              ),
-                            ),
-                            Text(
-                              "Nama Pengguna",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            widget.onTapNotification(
-                                2); // Ganti ke indeks notifikasi
-                          },
-                          child: Image.asset(
-                            'assets/notifikasi icon.png', // Pastikan nama file benar
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding:
+                  //       const EdgeInsets.only(left: 20, top: 44, right: 20),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       Column(
+                  //         crossAxisAlignment: CrossAxisAlignment.start,
+                  //         children: [
+                  //           Text(
+                  //             getGreeting(),
+                  //             style: TextStyle(
+                  //               fontSize: 14,
+                  //               fontWeight: FontWeight.w500,
+                  //               color: Colors.white,
+                  //             ),
+                  //           ),
+                  //           Text(
+                  //             "Nama Pengguna",
+                  //             style: TextStyle(
+                  //               fontSize: 20,
+                  //               fontWeight: FontWeight.w600,
+                  //               color: Colors.black,
+                  //             ),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //       GestureDetector(
+                  //         onTap: () {
+                  //           widget.onTapNotification(
+                  //               2); // Ganti ke indeks notifikasi
+                  //         },
+                  //         child: Image.asset(
+                  //           'assets/notifikasi icon.png', // Pastikan nama file benar
+                  //           fit: BoxFit.cover,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   // Kadar Amonia
-                  SizedBox(height: 20),
+                  // SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
                     child: Align(
@@ -807,6 +824,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 20),
                     ],
                   ),
                 ],
