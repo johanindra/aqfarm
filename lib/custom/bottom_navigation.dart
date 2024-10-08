@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kolamleleiot/beranda.dart';
-import 'package:kolamleleiot/monitoring.dart'; // Import MonitoringScreen
-import 'package:kolamleleiot/notifikasi.dart'; // Import NotifikasiScreen
-import 'package:kolamleleiot/profil.dart'; // Import ProfilScreen
+import 'package:kolamleleiot/informasi.dart';
+import 'package:kolamleleiot/monitoring.dart';
+import 'package:kolamleleiot/profil.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override
@@ -23,10 +23,10 @@ class _BottomNavigationState extends State<BottomNavigation> {
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
       HomeScreen(
-        onTapNotification: _onItemTapped, // Panggil _onItemTapped langsung
-      ),
+          // onTapNotification: _onItemTapped, // Panggil _onItemTapped langsung
+          ),
       MonitoringScreen(),
-      NotifikasiScreen(),
+      InformasiScreen(),
       ProfilScreen(),
     ];
 
@@ -70,7 +70,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 height: 24,
                 color: _selectedIndex == 2 ? Colors.black : Colors.grey[600],
               ),
-              label: 'Notifikasi',
+              label: 'Informasi',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:kolamleleiot/notifikasi.dart';
 import 'grafik/kadar_amonia.dart';
 import 'package:intl/intl.dart';
 import 'custom/icon_notifikasi.dart';
 
 class HomeScreen extends StatefulWidget {
-  final Function(int) onTapNotification;
-
-  HomeScreen({required this.onTapNotification});
+  // final Function(int) onTapNotification;
+  // HomeScreen({required this.onTapNotification});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: Colors.black,
               ),
             ),
             Text(
@@ -68,17 +68,42 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-        backgroundColor: Color(0xFF62CDFA),
+        backgroundColor: Color(0xFFE0F7FA),
+        // backgroundColor: Color(0xFF62CDFA),
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(
+        //         right: 20), // Menambahkan jarak 20 dari kanan
+        //     child: GestureDetector(
+        //       onTap: () {
+        //         widget.onTapNotification(2); // Ganti ke indeks notifikasi
+        //       },
+        //       child: CustomNotificationIcon(
+        //         hasNotification:
+        //             // false, // Ganti dengan true atau false sesuai kondisi notifikasi
+        //             true,
+        //       ),
+        //     ),
+        //   )
+        // ],
         actions: [
           Padding(
             padding: const EdgeInsets.only(
-                right: 20), // Menambahkan jarak 10 dari kanan
+                right: 20), // Menambahkan jarak 20 dari kanan
             child: GestureDetector(
               onTap: () {
-                widget.onTapNotification(2); // Ganti ke indeks notifikasi
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        NotifikasiScreen(), // Mengarahkan ke NotifikasiScreen
+                  ),
+                );
               },
-              child:
-                  CustomNotificationIcon(), // Menggunakan CustomNotificationIcon
+              child: CustomNotificationIcon(
+                hasNotification:
+                    true, // Ganti dengan true atau false sesuai kondisi notifikasi
+              ),
             ),
           ),
         ],
@@ -86,7 +111,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF62CDFA), Colors.white],
+            colors: [Color(0xFFE0F7FA), Colors.white],
+            // colors: [Color(0xFF62CDFA), Colors.white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -321,12 +347,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Positioned(
                           top: 10,
-                          left: 90,
+                          // left: 90,
+                          right: 30,
                           child: Image.asset(
                             'assets/waterdrop.png',
                             fit: BoxFit.contain,
                           ),
                         ),
+                        Positioned(
+                          top: 10,
+                          // left: 300,
+                          right: 10,
+                          child: Image.asset(
+                            'assets/suhu air.png',
+                            fit: BoxFit.contain,
+                          ),
+                        )
                       ],
                     ),
                   ),
