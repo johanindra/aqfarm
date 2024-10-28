@@ -95,12 +95,18 @@ class _SplashScreenState extends State<SplashScreen>
           ),
           child: Stack(
             children: [
-              // Logo tetap di posisi x=48, y=81 dengan ukuran w=367.89, h=163.82
               Positioned(
                 left: 48,
                 top: 81,
                 child: Image.asset('assets/Logo-splash-screen.png'),
               ),
+              // Align(
+              //   alignment: Alignment.topCenter,
+              //   child: Padding(
+              //     padding: EdgeInsets.only(top: 81),
+              //     child: Image.asset('assets/logo aquafarm.png'),
+              //   ),
+              // ),
               // Logo animasi melayang di tengah
               Center(
                 child: AnimatedBuilder(

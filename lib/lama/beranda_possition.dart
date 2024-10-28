@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'grafik/kadar_amonia.dart';
+import '../grafik/kadar_amonia.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {

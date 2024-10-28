@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kolamleleiot/notifikasi.dart';
-import 'grafik/kadar_amonia.dart';
+import 'package:kolamleleiot/view/notifikasi.dart';
+import '../grafik/kadar_amonia.dart';
 import 'package:intl/intl.dart';
-import 'custom/icon_notifikasi.dart';
+import '../custom/icon_notifikasi.dart';
+import 'package:kolamleleiot/componen/collors.dart';
 
 class HomeScreen extends StatefulWidget {
   // final Function(int) onTapNotification;
@@ -55,20 +56,21 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                color: Colors.black,
+                color: ColorConstants.blackColor,
               ),
             ),
             Text(
-              "Nama Pengguna",
+              "Johan",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: ColorConstants.blackColor,
               ),
             ),
           ],
         ),
-        backgroundColor: Color(0xFFE0F7FA),
+        // backgroundColor: ColorConstants.PutihBiruColor,
+        backgroundColor: ColorConstants.BiruColor,
         // backgroundColor: Color(0xFF62CDFA),
         // actions: [
         //   Padding(
@@ -111,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFE0F7FA), Colors.white],
+            // colors: ColorConstants.gradientBackgroundColors,
+            colors: ColorConstants.gradientBackgroundColorsBlue,
             // colors: [Color(0xFF62CDFA), Colors.white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -174,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
-                          color: Colors.black,
+                          color: ColorConstants.blackColor,
                         ),
                       ),
                     ),
@@ -197,7 +200,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           children: [
                             Card(
-                              color: Colors.white,
+                              color: ColorConstants.whiteColor,
                               elevation: 4,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -212,7 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       currentTime,
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: Colors.grey,
+                                        color: ColorConstants.greyColor,
                                       ),
                                     ),
                                     SizedBox(height: 5),
@@ -275,7 +278,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         TextSpan(
                                           text: "0,05 ppm",
                                           style: TextStyle(
-                                            color: Colors.red,
+                                            color: ColorConstants.redColor,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),

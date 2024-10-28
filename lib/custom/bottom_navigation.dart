@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:kolamleleiot/beranda.dart';
-import 'package:kolamleleiot/informasi.dart';
-import 'package:kolamleleiot/monitoring.dart';
-import 'package:kolamleleiot/profil.dart';
+import 'package:kolamleleiot/view/beranda.dart';
+import 'package:kolamleleiot/view/informasi.dart';
+import 'package:kolamleleiot/view/monitoring.dart';
+import 'package:kolamleleiot/view/profil.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override

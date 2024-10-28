@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kolamleleiot/componen/collors.dart';
 
 class CustomNotificationIcon extends StatelessWidget {
   final bool hasNotification; // Boolean untuk status notifikasi
@@ -15,12 +16,12 @@ class CustomNotificationIcon extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Colors.white,
+            color: ColorConstants.whiteColor,
           ),
           child: Center(
             child: Icon(
               Icons.notifications,
-              color: Color(0xFF62CDFA),
+              color: ColorConstants.BiruColor,
               size: 24,
             ),
           ),
@@ -34,7 +35,7 @@ class CustomNotificationIcon extends StatelessWidget {
               width: 10,
               height: 10,
               decoration: BoxDecoration(
-                color: Colors.red, // Warna titik merah
+                color: ColorConstants.redColor, // Warna titik merah
                 shape: BoxShape.circle,
               ),
             ),
