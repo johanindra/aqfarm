@@ -1,13 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:kolamleleiot/custom/bottom_navigation.dart';
 import 'package:kolamleleiot/componen/collors.dart';
+import 'package:kolamleleiot/custom/notifikasi.dart'; // Import kelas SetNamaNull
 
-class SetNamaScreen extends StatelessWidget {
+class SetNamaScreen extends StatefulWidget {
+  @override
+  _SetNamaScreenState createState() => _SetNamaScreenState();
+}
+
+class _SetNamaScreenState extends State<SetNamaScreen> {
+  final TextEditingController _nameController = TextEditingController();
+
+  void _onSave() {
+    if (_nameController.text.isEmpty) {
+      SetNamaNull.show(context); // Tampilkan notifikasi jika nama kosong
+    } else {
+      // Tampilkan konfirmasi nama
+      KonfirmNama.show(
+        context,
+        _nameController.text,
+        () {
+          // Pindah ke BottomNavigation setelah konfirmasi tanpa bisa kembali
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => BottomNavigation()),
+            (Route<dynamic> route) => false, // Menghapus semua route sebelumnya
+          );
+        },
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        // Tambahkan SingleChildScrollView
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
@@ -17,7 +43,7 @@ class SetNamaScreen extends StatelessWidget {
               Center(
                 child: Image.asset(
                   'assets/setnama.png',
-                  width: 150, // Sesuaikan ukuran jika diperlukan
+                  width: 150,
                   height: 150,
                 ),
               ),
@@ -40,6 +66,7 @@ class SetNamaScreen extends StatelessWidget {
               ),
               SizedBox(height: 50), // Jarak antara instruksi dan form nama
               TextField(
+                controller: _nameController, // Menambahkan controller
                 decoration: InputDecoration(
                   labelText: "Nama",
                   border: OutlineInputBorder(),
@@ -49,13 +76,7 @@ class SetNamaScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: 30),
                 child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => BottomNavigation()),
-                    );
-                  },
+                  onPressed: _onSave, // Memanggil fungsi _onSave
                   style: ElevatedButton.styleFrom(
                     backgroundColor:
                         ColorConstants.primaryColor, // Warna tombol
