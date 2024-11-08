@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kolamleleiot/view/set-nama.dart';
+import 'package:kolamleleiot/custom/bottom_navigation.dart';
 // import 'beranda.dart';
 // import 'custom/bottom_navigation.dart';
 import 'view/splashscreen.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(), // Panggil SplashScreen sebagai halaman pertama
       routes: {
-        '/home': (context) => SetNamaScreen(), // Halaman setelah splash
+        '/home': (context) => BottomNavigation(), // Halaman setelah splash
       },
     );
   }
